@@ -1,0 +1,12 @@
+{
+  "name": "gigflow-presentation",
+  "version": "1.0.0",
+  "description": "GigFlow pitch deck",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
