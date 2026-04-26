@@ -1181,7 +1181,7 @@
       <div class="opp-grid">
         <div class="opp-card" data-delay="0"
           data-tip="DemandSage / World Bank, 2025: 76.4 million US freelancers today, projected to reach 90.1 million by 2028 — more than half the total US labor force. Source: Statista, 2026.">
-          <div class="opp-num count-up" data-target="764" data-suffix="M" style="font-size:44px;">0M</div>
+          <div class="opp-num count-up" data-target="76.4" data-suffix="M" style="font-size:44px;">0M</div>
           <div style="font-size:11px;font-family:'DM Mono',monospace;color:rgba(255,255,255,.3);margin-top:4px;">→ 90.1M
             by 2028</div>
           <p class="opp-label">US freelancers today, growing to majority of US workforce</p>
@@ -1244,7 +1244,7 @@
     <div class="slide" id="s7">
       <div class="vision-center">
         <p class="slide-eyebrow">The Vision</p>
-        <h2 class="vision-big">76M Workers.<br>Zero Surprises.</h2>
+        <h2 class="vision-big">76.4M Workers.<br>Zero Surprises.</h2>
         <p class="vision-sub">By 2028, over <strong style="color:var(--text);">90 million Americans</strong> will be
           independent workers. <strong
             style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1em;"><span
@@ -1254,7 +1254,7 @@
         <div class="vision-stats">
           <div class="vstat"
             data-tip="DemandSage, 2025: 76.4 million freelancers in the US, representing 36–38% of the total US workforce.">
-            <span class="vstat-num count-up" data-target="764" data-suffix="M" style="font-size:44px;">0M</span>
+            <span class="vstat-num count-up" data-target="76.4" data-suffix="M" style="font-size:44px;">0M</span>
             <span class="vstat-label">US freelancers today</span>
           </div>
           <div class="vstat"
@@ -1368,8 +1368,9 @@
       const timer = setInterval(() => {
         start += inc;
         if (start >= target) { start = target; clearInterval(timer); }
-        const val = Math.round(start);
-        el.textContent = prefix + (comma ? val.toLocaleString() : val) + suffix;
+        const isDecimal = target % 1 !== 0;
+        const val = isDecimal ? start.toFixed(1) : Math.round(start);
+        el.textContent = prefix + (comma ? Number(val).toLocaleString() : val) + suffix;
       }, dur / steps);
     }
 
@@ -1414,11 +1415,6 @@
         }, parseInt(r.dataset.delay || 0));
       });
     }
-
-    // Fix opp-num for 76.4M display
-    document.querySelectorAll('.opp-num.count-up[data-target="764"]').forEach(el => {
-      el.dataset.display = '76.4';
-    });
 
     setTimeout(() => triggerSlideAnim(0), 200);
     updateDots();
